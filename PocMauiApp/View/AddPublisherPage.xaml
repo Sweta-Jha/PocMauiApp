@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:popup="clr-namespace:Mopups.Pages;assembly=Mopups"
+                 x:Class="PocMauiApp.View.AddPublisherPage"
+                 CloseWhenBackgroundIsClicked="False"
+                 BackgroundColor="Transparent">
+
+    <StackLayout 
+        WidthRequest="500" 
+        HeightRequest="500" 
+        BackgroundColor="Transparent"
+        HorizontalOptions="CenterAndExpand"
+        VerticalOptions="CenterAndExpand">
+
+        <Frame Margin="0" BackgroundColor="White" CornerRadius="10" BorderColor="LightGray" Padding="0">
+            <StackLayout>
+                <!-- Header -->
+                <StackLayout Orientation="Horizontal" BackgroundColor="Gray" HeightRequest="50" Padding="10">
+                    <Label Text="Add Publisher" FontSize="18" TextColor="White" VerticalOptions="Center" />
+                    <Button Text="X" Margin="0,-10" Clicked="Button_Clicked" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" FontAttributes="Bold" FontSize="20" TextColor="White" VerticalOptions="StartAndExpand" />
+                </StackLayout>
+
+                <ScrollView>
+                    <StackLayout Padding="20" Spacing="15" >
+                        <!-- Publisher Name Entry with Label -->
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Publisher Name:" 
+                                       FontAttributes="Bold" 
+                                       FontSize="14" 
+                                       TextColor="#333333" 
+                                       VerticalOptions="Center"
+                                       />
+                                <Label Text="*" 
+                                       FontSize="10" 
+                                       TextColor="Red" 
+                                       VerticalOptions="Center" 
+                                       />
+                            </StackLayout>
+                            <Entry Placeholder="Enter publisher name" 
+                                   Text="{Binding NewPublisher.Name}" 
+                                   BackgroundColor="#FFFFFF" 
+                                   HeightRequest="44" 
+                                   Margin="40,0"
+                                   HorizontalOptions="FillAndExpand" 
+                                   VerticalOptions="Center" 
+                                   />
+                        </StackLayout>
+
+                        <!-- Publisher Email Entry with Label -->
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" >
+                                <Label Text="Publisher Email:" 
+                                       FontAttributes="Bold" 
+                                       FontSize="14" 
+                                       TextColor="#333333" 
+                                       VerticalOptions="Center"
+                                       />
+                                <Label Text="*" 
+                                       FontSize="10" 
+                                       TextColor="Red" 
+                                       VerticalOptions="Center" 
+                                       />
+                            </StackLayout>
+                            <Entry Placeholder="Enter publisher email" 
+                                   Text="{Binding NewPublisher.Email}" 
+                                   BackgroundColor="#FFFFFF" 
+                                   HeightRequest="44"  Margin="40,0"
+                                   HorizontalOptions="FillAndExpand" 
+                                   VerticalOptions="Center" 
+                                   />
+                        </StackLayout>
+
+                        <!-- Save Button -->
+                        <Button Text="Save" 
+                                Command="{Binding SaveNewPublisherCommand}"
+                                BackgroundColor="#b64f79" 
+                                WidthRequest="100"
+                                TextColor="{DynamicResource ButtonTextColor}"
+                                FontSize="14"
+                                CornerRadius="8"
+                                Margin="0,0,0,10"
+                                HorizontalOptions="Center"/>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</popup:PopupPage>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                 xmlns:popup="clr-namespace:Mopups.Pages;assembly=Mopups"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 x:Class="PocMauiApp.View.BlogEntryPage"  
+                 CloseWhenBackgroundIsClicked="False"  
+                 BackgroundColor="Transparent">
+
+    <StackLayout 
+        WidthRequest="600" 
+        HeightRequest="700" 
+        BackgroundColor="Transparent"
+        HorizontalOptions="Center"
+        VerticalOptions="CenterAndExpand">
+
+        <Frame Margin="0" BackgroundColor="White"  HeightRequest="700" CornerRadius="10" BorderColor="LightGray">
+            <StackLayout>
+                <!-- Header -->
+                <StackLayout Orientation="Horizontal" BackgroundColor="Gray" HeightRequest="50" Padding="10">
+                    <Label Text="Blog Details" FontSize="18" TextColor="White" VerticalOptions="Center" />
+                    <Button Text="X" Margin="0,-10" Clicked="Button_Clicked" BackgroundColor="Transparent" 
+                                HorizontalOptions="EndAndExpand" FontAttributes="Bold" FontSize="20" 
+                                TextColor="White" VerticalOptions="StartAndExpand" />
+                </StackLayout>
+
+                <ScrollView>
+                    <Grid BackgroundColor="#ffffff" Margin="10" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto" Padding="10">
+
+                        <!-- Blog Topic Section -->
+                        <StackLayout Padding="0" Orientation="Horizontal" Grid.Row="0" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Spacing="2" Margin="10,0">
+                                <Label Text="Blog Topic:" FontAttributes="Bold" FontSize="14" TextColor="#333333"/>
+                                <Label Text="*" FontSize="10" TextColor="Red" VerticalOptions="Start"/>
+                            </StackLayout>
+                            <Entry Margin="50,0,50,8" WidthRequest="300" Placeholder="Enter blog topic" Text="{Binding SelectedBlogEntry.BlogTopic}" 
+                                       BackgroundColor="#FFFFFF" HeightRequest="44" VerticalOptions="Start" />
+                        </StackLayout>
+
+                        <!-- Assigned to Section -->
+                        <StackLayout Margin="0,8" Padding="0" Orientation="Horizontal" Grid.Row="1" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Spacing="2" Margin="10,0">
+                                <Label Text="Assigned To:" FontAttributes="Bold" FontSize="14" TextColor="#333333"/>
+                                <Label Text="*" FontSize="10" TextColor="Red" VerticalOptions="Start"/>
+                            </StackLayout>
+                            <Picker Margin="40,0" WidthRequest="300" ItemsSource="{Binding Publishers}" 
+                                        ItemDisplayBinding="{Binding Name}" 
+                                        SelectedItem="{Binding SelectedPublisher}" 
+                                        BackgroundColor="#FFFFFF" VerticalOptions="Start" />
+                        </StackLayout>
+
+                        <!-- Team Lead Name Section -->
+                        <StackLayout Margin="0,8" Padding="0" Orientation="Horizontal" Grid.Row="2" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Spacing="2" Margin="10,0">
+                                <Label Text="Team Lead Name:" FontAttributes="Bold" FontSize="14" TextColor="#333333"/>
+                                <Label Text="*" FontSize="10" TextColor="Red" VerticalOptions="Start"/>
+                            </StackLayout>
+                            <Entry Margin="2,0" Text="{Binding SelectedBlogEntry.TeamLeadName}" WidthRequest="300" Placeholder="Enter Team Lead Name" 
+           BackgroundColor="#FFFFFF" HeightRequest="44" VerticalOptions="Start" />
+
+                            <!--<Picker Margin="2,0" WidthRequest="300" SelectedItem="{Binding SelectedBlogEntry.TeamLeadName}" 
+                                        BackgroundColor="#FFFFFF" VerticalOptions="Start">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Sarah Connor</x:String>
+                                        <x:String>James Cameron</x:String>
+                                        <x:String>Linda Hamilton</x:String>
+                                        <x:String>Arnold Schwarzenegger</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>-->
+                        </StackLayout>
+
+                        <!-- Assignment Date Section -->
+                        <StackLayout Margin="0,8" Padding="0" Orientation="Horizontal" Grid.Row="3" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Spacing="2" Margin="10,0">
+                                <Label Text="Assignment Date:" FontAttributes="Bold" FontSize="14" TextColor="#333333"/>
+                                <Label Text="*" FontSize="10" TextColor="Red" VerticalOptions="Start"/>
+                            </StackLayout>
+                            <DatePicker Margin="5,0" WidthRequest="300" Date="{Binding SelectedBlogEntry.AssignmentDate}" 
+                                            BackgroundColor="#FFFFFF" HeightRequest="44" VerticalOptions="Start"/>
+                        </StackLayout>
+
+                        <!-- Published Date Section -->
+                        <StackLayout Margin="0,8" Padding="0" Orientation="Horizontal" Grid.Row="4" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Spacing="2" Margin="10,0">
+                                <Label Text="Published Date:" FontAttributes="Bold" FontSize="14" TextColor="#333333"/>
+                                <Label Text="*" FontSize="10" TextColor="Red" VerticalOptions="Start"/>
+                            </StackLayout>
+                            <DatePicker Margin="15,0" WidthRequest="300" Date="{Binding SelectedBlogEntry.PublishedDate}" 
+                                            BackgroundColor="#FFFFFF" HeightRequest="44" VerticalOptions="Center" />
+                        </StackLayout>
+
+                        <!-- Status Section -->
+                        <StackLayout Margin="0,8" Padding="0" Orientation="Horizontal" Grid.Row="5" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Spacing="2" Margin="10,0">
+                                <Label Text="Status:" FontAttributes="Bold" FontSize="14" TextColor="#333333"/>
+                                <Label Text="*" FontSize="10" TextColor="Red" VerticalOptions="Start"/>
+                            </StackLayout>
+                            <Picker Margin="75,0" WidthRequest="300" ItemsSource="{Binding Statuses}" 
+                                        ItemDisplayBinding="{Binding StatusName}" 
+                                        SelectedItem="{Binding SelectedStatus}" 
+                                        BackgroundColor="#FFFFFF" VerticalOptions="Center" />
+                        </StackLayout>
+
+                        <!-- Blog Link Section -->
+                        <StackLayout Margin="0,8" Padding="0" Orientation="Horizontal" Grid.Row="6" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Spacing="2" Margin="10,0">
+                                <Label Text="Blog Link:" FontAttributes="Bold" FontSize="14" TextColor="#333333"/>
+                            </StackLayout>
+                            <Entry Margin="60,0" WidthRequest="300" Placeholder="Enter blog link" Text="{Binding SelectedBlogEntry.BlogLink}" 
+                                       BackgroundColor="#FFFFFF" HeightRequest="44" VerticalOptions="Center" />
+                        </StackLayout>
+
+                        <!-- Notes Section -->
+                        <StackLayout Margin="0,8" Padding="0" Orientation="Horizontal" Grid.Row="7" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Spacing="2" Margin="10,0">
+                                <Label Text="Notes:" FontAttributes="Bold" FontSize="14" TextColor="#333333"/>
+                            </StackLayout>
+                            <Editor  Margin="80,0" WidthRequest="300" Placeholder="Enter notes here" 
+                                        Text="{Binding SelectedBlogEntry.Notes}" 
+                                        BackgroundColor="#FFFFFF" HeightRequest="100" 
+                                        AutoSize="TextChanges" VerticalOptions="Center" />
+                        </StackLayout>
+
+                        <!-- Save Button -->
+                        <Button Text="Save" 
+                                    Command="{Binding SaveBlogEntryCommand}" 
+                                    TextColor="#FFFFFF"  HorizontalOptions="CenterAndExpand"
+                                    BackgroundColor="#b64f79"  
+                                    WidthRequest="100"
+                                    CornerRadius="8" FontSize="14" 
+                                    Grid.ColumnSpan="2" Grid.Row="8" Margin="15"/>
+                    </Grid>
+                </ScrollView>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</popup:PopupPage>

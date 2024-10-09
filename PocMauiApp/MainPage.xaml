@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PocMauiApp.MainPage">
+
+    <ScrollView>
+        <StackLayout Padding="10" WidthRequest="500">
+
+            <!-- Other entry fields for BlogTopic, AssignedTo, etc. -->
+            <Entry Placeholder="Blog Topic" Text="{Binding SelectedBlogEntry.BlogTopic}" Margin="10" />
+            <Entry Placeholder="Assigned to" Text="{Binding SelectedBlogEntry.AssignedTo}" Margin="10"/>
+            <DatePicker Date="{Binding SelectedBlogEntry.AssignmentDate}" Margin="10"/>
+            <Entry Placeholder="Team Lead Name" Text="{Binding SelectedBlogEntry.TeamLeadName}" Margin="10"/>
+            <DatePicker Date="{Binding SelectedBlogEntry.PublishedDate}" Margin="10" />
+
+            <!-- Status Picker -->
+            <Frame Style="{DynamicResource ToDoItemFrame}" Padding="10"  CornerRadius="10" Margin="10">
+                <Picker Title="Set Status" SelectedItem="{Binding SelectedBlogEntry.CurrentStatus}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Low</x:String>
+                            <x:String>Medium</x:String>
+                            <x:String>High</x:String>
+                            <x:String>Critical</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </Frame>
+
+            <!-- Other fields for BlogLink and Notes -->
+            <Entry Placeholder="Blog Link" Text="{Binding SelectedBlogEntry.BlogLink}" Margin="10"/>
+            <Editor Placeholder="Notes" Text="{Binding SelectedBlogEntry.Notes}" Margin="10"/>
+
+            <!-- Buttons for CRUD operations -->
+            <Button Text="Add Blog Entry" Command="{Binding AddBlogEntryCommand}" Margin="10"/>
+            <Button Text="Update Blog Entry" Command="{Binding UpdateBlogEntryCommand}" Margin="10"/>
+            <Button Text="Delete Blog Entry" Command="{Binding DeleteBlogEntryCommand}" Margin="10"/>
+
+            <!-- ListView to display the list of blog entries -->
+            <ListView ItemsSource="{Binding BlogEntries}" SelectedItem="{Binding SelectedBlogEntry}" Margin="10">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding BlogTopic}" Detail="{Binding AssignedTo}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

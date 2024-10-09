@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PocMauiApp.View.PublisherPage"
+             BackgroundColor="White">
+
+    <StackLayout Padding="15" Spacing="20">
+        <!-- Add New Publisher Button -->
+        <Button Text="Add New" 
+                Command="{Binding NavigateToAddPublisherCommand}" 
+                HorizontalOptions="EndAndExpand" 
+                VerticalOptions="Center" 
+                BackgroundColor="#b64f79"
+                TextColor="White"
+                CornerRadius="5" 
+                Margin="0,10,0,0"
+                Padding="10,5" />
+
+        <!-- Publisher Entries Grid -->
+        <CollectionView ItemsSource="{Binding Publishers}" 
+                        SelectionMode="Single" 
+                        Margin="0,10,0,0"
+                        BackgroundColor="Transparent">
+            <CollectionView.Header>
+                <Grid Padding="10" ColumnSpacing="10" RowSpacing="10" BackgroundColor="#f0f0f0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Column Headers -->
+                    <Label Grid.Column="0" Text="Publisher Name" 
+                           FontAttributes="Bold" 
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center" 
+                           TextColor="#b64f79" />
+                    <Label Grid.Column="1" Text="Publisher Email" 
+                           FontAttributes="Bold" 
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center" 
+                           TextColor="#b64f79" />
+                    <Label Grid.Column="2" Text="Actions" 
+                           FontAttributes="Bold" 
+                           VerticalOptions="Center" 
+                           HorizontalOptions="Center" 
+                           TextColor="#b64f79" />
+                </Grid>
+            </CollectionView.Header>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="0,5,0,5" BorderColor="LightGray" CornerRadius="0" HasShadow="True">
+                        <Grid Padding="10" ColumnSpacing="10" RowSpacing="10" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Data Cells -->
+                            <Label Grid.Column="0" Text="{Binding Name}" 
+                                   HorizontalOptions="Center" 
+                                   VerticalOptions="Center" 
+                                   FontSize="14"/>
+                            <Label Grid.Column="1" Text="{Binding Email}" 
+                                   HorizontalOptions="Center" 
+                                   VerticalOptions="Center" 
+                                   FontSize="14"/>
+                            <StackLayout Grid.Column="2" HorizontalOptions="Center" Orientation="Horizontal" Spacing="4">
+                                <!-- Edit Button -->
+                                <Button Text="Edit" 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EditPublisherCommand}"
+                                        CommandParameter="{Binding .}" 
+                                        VerticalOptions="Center" 
+                                        HorizontalOptions="Center" 
+                                        BackgroundColor="#b64f79"
+                                        TextColor="White"
+                                        CornerRadius="5"  
+                                        Padding="10,5"/>
+                                <!-- Delete Button -->
+                                <Button Text="Delete" 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeletePublisherCommand}"
+                                        CommandParameter="{Binding .}" 
+                                        BackgroundColor="Gray" 
+                                        TextColor="White"
+                                        VerticalOptions="Center" 
+                                        HorizontalOptions="Center" 
+                                        CornerRadius="5"  
+                                        Padding="10,5"/>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </StackLayout>
+</ContentPage>
