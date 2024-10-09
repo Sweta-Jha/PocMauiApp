@@ -24,7 +24,7 @@ namespace PocMauiApp
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
-            var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Blog.db");
+            var dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Blog3.db");
 
             builder.Services.AddSingleton(new DatabaseService(dbPath));
             builder.Services.AddTransient<BlogEntryViewModel>();

@@ -55,19 +55,7 @@
                                 <Label Text="*" FontSize="10" TextColor="Red" VerticalOptions="Start"/>
                             </StackLayout>
                             <Entry Margin="2,0" Text="{Binding SelectedBlogEntry.TeamLeadName}" WidthRequest="300" Placeholder="Enter Team Lead Name" 
-           BackgroundColor="#FFFFFF" HeightRequest="44" VerticalOptions="Start" />
-
-                            <!--<Picker Margin="2,0" WidthRequest="300" SelectedItem="{Binding SelectedBlogEntry.TeamLeadName}" 
-                                        BackgroundColor="#FFFFFF" VerticalOptions="Start">
-                                <Picker.ItemsSource>
-                                    <x:Array Type="{x:Type x:String}">
-                                        <x:String>Sarah Connor</x:String>
-                                        <x:String>James Cameron</x:String>
-                                        <x:String>Linda Hamilton</x:String>
-                                        <x:String>Arnold Schwarzenegger</x:String>
-                                    </x:Array>
-                                </Picker.ItemsSource>
-                            </Picker>-->
+                             BackgroundColor="#FFFFFF" HeightRequest="44" VerticalOptions="Start" />
                         </StackLayout>
 
                         <!-- Assignment Date Section -->

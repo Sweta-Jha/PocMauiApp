@@ -103,8 +103,6 @@
                                 <Label Grid.Column="0" Text="{Binding BlogTopic}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="14"/>
                                 <Label Grid.Column="1" Text="{Binding AssignedTo.Name}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="14"/>
                                 <Label Grid.Column="2" Text="{Binding TeamLeadName}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="14"/>
-                                <!--<Label Grid.Column="3" Text="{Binding AssignmentDate}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="14"/>
-                                <Label Grid.Column="4" Text="{Binding PublishedDate}" VerticalOptions="Center" HorizontalOptions="Start" FontSize="14"/>-->
                                 <Label Grid.Column="3" 
        Text="{Binding AssignmentDate, StringFormat='{0:MM/dd/yyyy}'}" 
        VerticalOptions="Center" 
