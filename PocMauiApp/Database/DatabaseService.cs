@@ -29,12 +29,10 @@ namespace PocMauiApp.Database
             return blogEntries;
         }
         public BlogEntry GetBlogEntryById(int id) => _database.Find<BlogEntry>(id);
-
         public void AddBlogEntry(BlogEntry entry) => _database.Insert(entry);
-
         public void UpdateBlogEntry(BlogEntry entry)  => _database.Update(entry);
-
         public void DeleteBlogEntry(int id) => _database.Delete<BlogEntry>(id);
+
         // User methods
         public IEnumerable<Publisher> GetAllUsers() => _database.Table<Publisher>().ToList();
         public Publisher GetUserById(int id) => _database.Find<Publisher>(id);

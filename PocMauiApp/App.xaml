@@ -5,58 +5,33 @@
              x:Class="PocMauiApp.App">
     <Application.Resources>
         <ResourceDictionary>
-            <!-- Page Background Color -->
             <Color x:Key="PageBackgroundColor">#F5F5F5</Color>
-            <!-- Card Styling -->
             <Color x:Key="CardBackgroundColor">#FFFFFF</Color>
-            
-            <!-- Label and Text Colors -->
             <Color x:Key="LabelTextColor">#333333</Color>
             <Color x:Key="TextColor">#555555</Color>
-            <!-- Menu Styling -->
             <Color x:Key="MenuBackgroundColor">#FFFFFF</Color>
-            <!-- White -->
             <Color x:Key="MenuItemTextColor">#333333</Color>
-            <!-- Dark gray -->
-            <!-- Header Styles -->
             <Color x:Key="HeaderBackgroundColor">#FF6200EE</Color>
             <Color x:Key="HeaderTextColor">#FFFFFF</Color>
             <Color x:Key="FrameBorderColor">#CCCCCC</Color>
-            <!-- Entry Text Color -->
             <Color x:Key="EntryTextColor">#333333</Color>
-            <!-- Text Colors -->
             <Color x:Key="TitleTextColor">#333333</Color>
-            <!-- CollectionView Background Color -->
             <Color x:Key="CollectionViewBackgroundColor">#FFFFFF</Color>
-            <!-- Grid Item Background Color -->
             <Color x:Key="ItemBackgroundColor">#FAFAFA</Color>
-            <!-- Dark gray -->
             <Color x:Key="ItemTextColor">#666666</Color>
-            <!-- Medium gray -->
             <Color x:Key="EntryBackgroundColor">#FFFFFF</Color>
-            <!-- Dark gray text color -->
-            <!-- Button Styles -->
             <Color x:Key="ButtonBackgroundColor">#6200EE</Color>
             <Color x:Key="ButtonTextColor">#FFFFFF</Color>
             <Color x:Key="CancelButtonBackgroundColor">#B00020</Color>
-            <!-- Red color for cancel button -->
             <Color x:Key="CancelButtonTextColor">#FFFFFF</Color>
             <Color x:Key="DeleteButtonBackgroundColor">#B00020</Color>
-            <!-- Red for delete button -->
             <Color x:Key="DeleteButtonTextColor">#FFFFFF</Color>
-            <!-- White text for delete button -->
             <Color x:Key="AddButtonBackgroundColor">#03DAC5</Color>
-            <!-- Teal for add button -->
             <Color x:Key="AddButtonTextColor">#FFFFFF</Color>
             <Color x:Key="EditButtonColor">#4CAF50</Color>
-            <!-- Green -->
             <Color x:Key="DeleteButtonColor">#F44336</Color>
-            <!-- Red -->
             <Color x:Key="ViewDetailsButtonColor">#2196F3</Color>
-            <!-- Blue -->
             <Color x:Key="AddNewButtonColor">#2196F3</Color>
-            <!-- Blue -->
-            <!-- Cancel button text color -->
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
