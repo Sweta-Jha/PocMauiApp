@@ -24,25 +24,41 @@ namespace PocMauiApp.ViewModel
         {
             if (!string.IsNullOrWhiteSpace(Status.StatusName))
             {
-                if (Status.Id == 0)
+                try
                 {
-                    // Add new status
-                    _databaseService.AddStatus(Status);
-                    await Application.Current.MainPage.DisplayAlert("Success", "Status entry added successfully!", "OK");
+                    // Add or update the status
+                    if (Status.Id == 0)
+                    {
+                        _databaseService.AddStatus(Status);
+                        await ShowSuccessMessage("Status entry added successfully!");
+                    }
+                    else
+                    {
+                        _databaseService.UpdateStatus(Status);
+                        await ShowSuccessMessage("Status entry updated successfully!");
+                    }
+
+                    // Close the popup and refresh the status list
+                    await MopupService.Instance.PopAsync();
+                    MessagingCenter.Send<object>(this, "RefreshStatusList");
                 }
-                else
+                catch (Exception ex)
                 {
-                    // Update existing status
-                    _databaseService.UpdateStatus(Status);
-                    await Application.Current.MainPage.DisplayAlert("Success", "Status entry updated successfully!", "OK");
+                    await ShowErrorMessage($"Failed to save status: {ex.Message}");
                 }
-                await MopupService.Instance.PopAsync();
-                MessagingCenter.Send<object>(this, "RefreshStatusList");
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Information", "Please fill in all required fields.", "OK");
+                await ShowErrorMessage("Please fill in all required fields.");
             }
+        }
+        private async Task ShowErrorMessage(string message)
+        {
+            await Application.Current.MainPage.DisplayAlert("Error", message, "OK");
+        }
+        private async Task ShowSuccessMessage(string message)
+        {
+            await Application.Current.MainPage.DisplayAlert("Success", message, "OK");
         }
     }
 }

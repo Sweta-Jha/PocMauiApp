@@ -68,33 +68,42 @@ namespace PocMauiApp.ViewModel
         {
             await Task.Run(() => ValidateInputFields());
 
+            string successMessage;
+            string errorMessage = "Please fill in all required fields.";
+
             if (CanSaveNewPublisher)
             {
                 if (NewPublisher.Id == 0)
                 {
                     _databaseService.AddUser(NewPublisher);
-                    await Application.Current.MainPage.DisplayAlert("Success", "Publisher entry added successfully!", "OK");
+                    successMessage = "Publisher entry added successfully!";
                 }
                 else
                 {
                     _databaseService.UpdateUser(NewPublisher);
-                    await Application.Current.MainPage.DisplayAlert("Success", "Publisher entry updated successfully!", "OK");
+                    successMessage = "Publisher entry updated successfully!";
                 }
 
-                // Navigate back to the previous page
+                // Show success message and navigate back
+                await ShowAlert("Success", successMessage);
                 await MopupService.Instance.PopAsync();
                 MessagingCenter.Send<object>(this, "RefreshPublisherList");
             }
             else
             {
-                var errorMessage = "Please fill in all required fields.";
                 if (!ValidateEmail(NewPublisher.Email))
                 {
                     errorMessage = "Please enter a valid email address.";
                 }
 
-                await Application.Current.MainPage.DisplayAlert("Information", errorMessage, "OK");
+                // Show error message
+                await ShowAlert("Information", errorMessage);
             }
+        }
+
+        private Task ShowAlert(string title, string message)
+        {
+            return Application.Current.MainPage.DisplayAlert(title, message, "OK");
         }
 
         [RelayCommand]

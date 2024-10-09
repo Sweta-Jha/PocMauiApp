@@ -34,31 +34,38 @@ namespace PocMauiApp.ViewModel
         {
             if (blogEntry == null)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "Blog entry not found!", "OK");
+                await ShowErrorMessage("Blog entry not found!");
                 return;
             }
 
-            bool confirmDelete = await Application.Current.MainPage.DisplayAlert(
-                "Confirm Deletion",
-                "Are you sure you want to delete this blog entry?",
-                "Yes",
-                "No"
-            );
-
+            bool confirmDelete = await ShowConfirmationDialog("Confirm Deletion", "Are you sure you want to delete this blog entry?");
             if (!confirmDelete) return;
 
             try
             {
                 _databaseService.DeleteBlogEntry(blogEntry.Id);
-
-                await Application.Current.MainPage.DisplayAlert("Success", "Blog entry deleted successfully!", "OK");
-
+                await ShowSuccessMessage("Blog entry deleted successfully!");
                 LoadBlogEntries();
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", $"Failed to delete blog entry: {ex.Message}", "OK");
+                await ShowErrorMessage($"Failed to delete blog entry: {ex.Message}");
             }
+        }
+
+        private async Task ShowErrorMessage(string message)
+        {
+            await Application.Current.MainPage.DisplayAlert("Error", message, "OK");
+        }
+
+        private async Task<bool> ShowConfirmationDialog(string title, string message)
+        {
+            return await Application.Current.MainPage.DisplayAlert(title, message, "Yes", "No");
+        }
+
+        private async Task ShowSuccessMessage(string message)
+        {
+            await Application.Current.MainPage.DisplayAlert("Success", message, "OK");
         }
 
         [RelayCommand]

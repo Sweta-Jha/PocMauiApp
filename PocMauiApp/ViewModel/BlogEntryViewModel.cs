@@ -63,20 +63,21 @@ public partial class BlogEntryViewModel : ObservableObject
             try
             {
                 // Add or update the blog entry
-                if (SelectedBlogEntry.Id == 0)
+                bool isNewEntry = SelectedBlogEntry.Id == 0;
+                if (isNewEntry)
                 {
                     _databaseService.AddBlogEntry(SelectedBlogEntry);
-                    await Application.Current.MainPage.DisplayAlert("Success", "Blog entry added successfully!", "OK");
                 }
                 else
                 {
                     _databaseService.UpdateBlogEntry(SelectedBlogEntry);
-                    await Application.Current.MainPage.DisplayAlert("Success", "Blog entry updated successfully!", "OK");
                 }
 
+                // Show success message
+                await ShowSuccessMessage(isNewEntry);
+
                 // Close the popup and refresh the blog list
-                await MopupService.Instance.PopAsync();
-                MessagingCenter.Send<object>(this, "RefreshBlogList");
+                await ClosePopupAndRefresh();
             }
             catch (Exception ex)
             {
@@ -88,6 +89,19 @@ public partial class BlogEntryViewModel : ObservableObject
             await Application.Current.MainPage.DisplayAlert("Information", "Please fill in all required fields!", "OK");
         }
     }
+
+    private async Task ShowSuccessMessage(bool isNewEntry)
+    {
+        string message = isNewEntry ? "Blog entry added successfully!" : "Blog entry updated successfully!";
+        await Application.Current.MainPage.DisplayAlert("Success", message, "OK");
+    }
+
+    private async Task ClosePopupAndRefresh()
+    {
+        await MopupService.Instance.PopAsync();
+        MessagingCenter.Send<object>(this, "RefreshBlogList");
+    }
+
     private bool ValidateEntry()
     {
         return !string.IsNullOrWhiteSpace(SelectedBlogEntry.BlogTopic) &&
